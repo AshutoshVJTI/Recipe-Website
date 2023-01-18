@@ -3,9 +3,12 @@ import React from "react";
 import Link from "next/link";
 import SubHeader from "./SubHeader";
 import { useRecipes } from "../lib/contentful";
+import { useRouter } from "next/router";
 
 const Header = () => {
   const { logo } = useRecipes();
+  const router = useRouter();
+
   return (
     <div className="pb-10">
       <SubHeader />
@@ -14,28 +17,48 @@ const Header = () => {
           <img src={logo} alt="Logo" className="w-44 m-6" />
         </Link>
         <nav className="flex flex-row items-center justify-center">
-          <Link href="/category">
-            <div className="mx-4 font-medium text-black hover:text-orange-600 cursor-pointer">
-              Category
+          <Link href="/categories">
+            <div
+              className={`mx-4 text-black hover:text-orange-600 cursor-pointer ${
+                router.asPath === "/categories" ? "font-bold" : "font-medium"
+              }`}
+            >
+              Categories
             </div>
           </Link>
           <Link href="/archive">
-            <div className="mx-4 font-medium text-black hover:text-orange-600 cursor-pointer">
+            <div
+              className={`mx-4 text-black hover:text-orange-600 cursor-pointer ${
+                router.asPath === "/archive" ? "font-bold" : "font-medium"
+              }`}
+            >
               Archive
             </div>
           </Link>
           <Link href="/favorites">
-            <div className="mx-4 font-medium text-black hover:text-orange-600 cursor-pointer">
+            <div
+              className={`mx-4 text-black hover:text-orange-600 cursor-pointer ${
+                router.asPath === "/favorites" ? "font-bold" : "font-medium"
+              }`}
+            >
               Favorites
             </div>
           </Link>
           <Link href="/profile">
-            <div className="mx-4 font-medium text-black hover:text-orange-600 cursor-pointer">
+            <div
+              className={`mx-4 text-black hover:text-orange-600 cursor-pointer ${
+                router.asPath === "/profile" ? "font-bold" : "font-medium"
+              }`}
+            >
               Profile
             </div>
           </Link>
           <Link href="/about">
-            <div className="mx-4 font-medium text-black hover:text-orange-600 cursor-pointer">
+            <div
+              className={`mx-4 text-black hover:text-orange-600 cursor-pointer ${
+                router.asPath === "/about" ? "font-bold" : "font-medium"
+              }`}
+            >
               About
             </div>
           </Link>

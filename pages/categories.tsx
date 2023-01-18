@@ -1,18 +1,22 @@
 /* eslint-disable @next/next/no-img-element */
+import Typo from "@/components/Typo";
 import Link from "next/link";
+import React, { useState, useEffect } from "react";
 import { useRecipes } from "../lib/contentful";
-import Typo from "./Typo";
 
-const PopularCategories = () => {
+const Categories = () => {
   const { categories } = useRecipes();
 
+  if (!categories.length) return <p>Loading...</p>;
+
   return (
-    <div className="my-8 container">
-      <Typo fontFamily="Playfair Display" className="text-4xl font-bold my-8">
-        Popular Categories
+    <div className="container my-8">
+      <Typo fontFamily="Playfair Display" className="text-6xl font-bold my-3">
+        Categories
       </Typo>
-      <div className="flex flex-wrap justify-center">
-        {categories.slice(0, 6).map((category) => (
+      <hr />
+      <div className="grid grid-cols-4 gap-4 my-8">
+        {categories.map((category) => (
           <div key={category.sys.id} className="p-4 hover:text-orange-600">
             <Link href="/category/[id]" as={`/category/${category.sys.id}`}>
               <div className="relative rounded-full overflow-hidden">
@@ -20,7 +24,7 @@ const PopularCategories = () => {
                   className="w-40 h-40 object-cover hover:scale-110"
                   src={category.fields.image.fields.file.url}
                   alt={category.fields.title}
-                  style={{transition: "0.2s all ease-in-out"}}
+                  style={{ transition: "0.2s all ease-in-out" }}
                 />
               </div>
               <div className="mt-2 text-center text-lg font-semibold">
@@ -34,4 +38,4 @@ const PopularCategories = () => {
   );
 };
 
-export default PopularCategories;
+export default Categories;
