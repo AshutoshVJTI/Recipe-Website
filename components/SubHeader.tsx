@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
-import { BsSearch } from "react-icons/bs";
+import { BsSearch, BsXLg } from "react-icons/bs";
 
 const SubHeader = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -31,19 +31,19 @@ const SubHeader = () => {
           <div
             className={`${
               isSearchOpen ? "block" : "hidden"
-            } fixed inset-0 z-50 bg-white`}
+            } inset-0 z-50 mx-auto w-80`}
           >
-            <div className="relative p-4">
+            <div className="relative">
               <input
-                className="w-full rounded-lg p-2"
+                className="w-full rounded-lg p-2 h-auto"
                 type="text"
                 placeholder="Search"
               />
               <button
                 onClick={handleSearchClose}
-                className="absolute top-0 right-0 p-2"
+                className="absolute right-1 top-1 p-2"
               >
-                <BsSearch />
+                <BsXLg />
               </button>
             </div>
           </div>

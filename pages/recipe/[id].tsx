@@ -149,7 +149,7 @@ const RecipeDetail = () => {
       </div>
       <div>
         <Typo fontFamily="Playful Details" className="text-5xl font-semibold mt-16 mb-5">Already made this?</Typo>
-        <button className="bg-white text-black border border-black py-1.5 px-8 rounded-lg hover:bg-black hover:text-white font-medium">Share your feedback</button>
+        <Link href={'/feedback'} className="bg-white text-black border border-black py-1.5 px-8 rounded-lg hover:bg-black hover:text-white font-medium">Share your feedback</Link>
       </div>
       <hr className="my-4 border-4 border-orange-500" />
       <div>
