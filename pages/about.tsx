@@ -1,9 +1,10 @@
+import Typo from "@/components/Typo";
 import React from "react";
 
 const About = () => {
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-medium mb-4">About Us</h1>
+    <div className="container mx-auto py-16">
+      <Typo fontFamily="Playfair Display" className="text-6xl font-bold mb-8">About Us</Typo>
       <p>
         We are a team of passionate foodies who love to create and share
         delicious recipes with the world. We believe that cooking and eating

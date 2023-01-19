@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Link from 'next/link';
 import { useRecipes } from '../lib/contentful';
+import Typo from "@/components/Typo";
 
 const Favorites = () => {
   const [sortBy, setSortBy] = useState("latest");
@@ -27,11 +28,11 @@ const Favorites = () => {
   }
 
   return (
-    <div>
+    <div className="container">
       <div className="flex justify-between">
         <div className="flex items-center">
           <i className="fas fa-heart text-red-500 mr-2" />
-          <h1 className="text-2xl">Favorites</h1>
+          <Typo fontFamily="Playfair Display" className="text-6xl font-bold mb-8">Favorites</Typo>
         </div>
         <div>
           <label>

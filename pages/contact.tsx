@@ -10,7 +10,7 @@ const Contact = () => {
 
   return (
     <div className="container mx-auto my-10">
-      <Typo fontFamily="Playfair Details" className="text-5xl font-bold text-center mb-4">Contact Us</Typo>
+      <Typo fontFamily="Playfair Details" className="text-6xl font-bold text-center mb-4">Contact Us</Typo>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
           <label htmlFor="name" className="block text-base font-medium mb-2">

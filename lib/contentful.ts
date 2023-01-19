@@ -42,6 +42,24 @@ export const useCategories = () => {
   return { categories, loadingCategories };
 };
 
+export const useCareers = () => {
+  const [careers, setCareers] = useState<any[]>([]);
+  const [loadingCareers, setLoadingCareers] = useState(true);
+
+  useEffect(() => {
+    client
+      .getEntries({
+        content_type: "career",
+      })
+      .then((response: any) => {
+        setCareers(response.items);
+        setLoadingCareers(false);
+      });
+  }, []);
+
+  return { careers, loadingCareers };
+};
+
 export const useLogo = () => {
   const [logo, setLogo] = useState<string>();
 

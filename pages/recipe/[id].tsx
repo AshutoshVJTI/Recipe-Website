@@ -118,14 +118,14 @@ const RecipeDetail = () => {
         </div>
       </div>
       <div className="grid grid-cols-2 mt-16">
-        <div>
+      <div>
           <Typo fontFamily="Playful Details" className="text-3xl font-semibold">
             Ingredients
           </Typo>
           <ul className="text-lg p-4">
             {recipe.fields.ingredients.map((ingredient: any, index: number) => (
               <li key={index} className="flex items-center p-2">
-                <input type="checkbox" className="form-checkbox rounded-full" />
+                <input type="checkbox" className="w-6 h-6 rounded-full accent-orange-500" onClick={(e: any) => e.target.parentNode.classList.toggle('line-through')}/>
                 <label className="ml-2">{ingredient}</label>
               </li>
             ))}
