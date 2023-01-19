@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import { useRecipes } from "../lib/contentful";
+import { useCategories } from '../lib/contentful';
 import Typo from "./Typo";
 
 const PopularCategories = () => {
-  const { categories } = useRecipes();
+  const { categories } = useCategories();
 
   return (
     <div className="my-8 container">

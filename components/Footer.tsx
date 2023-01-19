@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
-import { useRecipes } from "@/lib/contentful";
+import { useLogo } from '../lib/contentful';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const { logo } = useRecipes();
+  const { logo } = useLogo();
 
   return (
     <footer className="bg-gray-100 py-6">

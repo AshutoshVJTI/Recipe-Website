@@ -8,9 +8,7 @@ const client = createClient({
 
 export const useRecipes = () => {
   const [recipes, setRecipes] = useState<any[]>([]);
-  const [categories, setCategories] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [logo, setLogo] = useState<string>();
+  const [loadingRecipes, setLoadingRecipes] = useState(true);
 
   useEffect(() => {
     client
@@ -19,20 +17,39 @@ export const useRecipes = () => {
       })
       .then((response: any) => {
         setRecipes(response.items);
-        setLoading(false);
+        setLoadingRecipes(false);
       });
+  }, []);
+
+  return { recipes, loadingRecipes };
+};
+
+export const useCategories = () => {
+  const [categories, setCategories] = useState<any[]>([]);
+  const [loadingCategories, setLoadingCategories] = useState(true);
+
+  useEffect(() => {
     client
       .getEntries({
         content_type: "category",
       })
       .then((response: any) => {
         setCategories(response.items);
+        setLoadingCategories(false);
       });
-      client.getAsset('2L6leRWVJdnVekF5eGwYXr')
-      .then(asset => {
-        setLogo(asset.fields.file.url);
-      })
   }, []);
 
-  return { recipes, categories, loading, logo };
+  return { categories, loadingCategories };
+};
+
+export const useLogo = () => {
+  const [logo, setLogo] = useState<string>();
+
+  useEffect(() => {
+    client.getAsset("2L6leRWVJdnVekF5eGwYXr").then((asset) => {
+      setLogo(asset.fields.file.url);
+    });
+  }, []);
+
+  return { logo };
 };

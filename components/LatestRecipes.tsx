@@ -32,7 +32,7 @@ const LatestRecipes = () => {
             key={recipe.sys.id}
           >
             <Link href={`/recipe/${recipe.sys.id}`}>
-              <div className="relative overflow-hidden rounded">
+              <div className="relative overflow-hidden rounded-lg">
                 <img
                   src={recipe.fields.image.fields.file.url}
                   alt={recipe.fields.title}

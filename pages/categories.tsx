@@ -1,11 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import Typo from "@/components/Typo";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
-import { useRecipes } from "../lib/contentful";
+import { useCategories } from '../lib/contentful';
 
 const Categories = () => {
-  const { categories } = useRecipes();
+  const { categories } = useCategories();
 
   if (!categories.length) return <p>Loading...</p>;
 
