@@ -59,12 +59,12 @@ const SubHeader = () => {
             <BsSearch />
           </button>
           {!user && (
-            <a
+            <Link
               href="/api/auth/login"
               className="text-black hover:text-orange-600 mx-4"
             >
               Login
-            </a>
+            </Link>
           )}
           {user && user.picture && user.name && (
             <div className="user-avatar relative z-10">
