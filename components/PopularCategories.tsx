@@ -2,9 +2,15 @@
 import Link from "next/link";
 import { useCategories } from '../lib/contentful';
 import Typo from "./Typo";
+import { useState, useEffect } from 'react';
 
 const PopularCategories = () => {
   const { categories } = useCategories();
+  const [popularCategories, setPopularCategories] = useState<any>();
+
+  useEffect(() => {
+    setPopularCategories(categories.filter((category) => category.fields.popular === true))
+  }, [categories])
 
   return (
     <div className="my-8 container">
@@ -12,7 +18,7 @@ const PopularCategories = () => {
         Popular Categories
       </Typo>
       <div className="flex flex-wrap justify-center">
-        {categories.slice(0, 6).map((category) => (
+        {popularCategories && popularCategories.slice(0, 6).map((category: any) => (
           <div key={category.sys.id} className="p-4 hover:text-orange-600">
             <Link href="/category/[id]" as={`/category/${category.sys.id}`}>
               <div className="relative rounded-full overflow-hidden">

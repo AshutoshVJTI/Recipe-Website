@@ -5,15 +5,18 @@ import { useRecipes } from "../lib/contentful";
 import Typo from "./Typo";
 import { useState, useEffect } from "react";
 
-const LatestRecipes = () => {
+
+const LatestRecipes = (props: any) => {
+  const {title, numberOfItems, titleSize} = props;
   const { recipes } = useRecipes();
   const [visibleRecipes, setVisibleRecipes] = useState<any[]>();
   const [hasMore, setHasMore] = useState(false);
-
+  
   useEffect(() => {
-    setVisibleRecipes(recipes.slice(0, 24));
-    if (recipes.length > 24) setHasMore(true);
-  }, [recipes]);
+    recipes.reverse();
+    setVisibleRecipes(recipes.slice(0, numberOfItems));
+    if (recipes.length > numberOfItems) setHasMore(true);
+  }, [numberOfItems, recipes]);
 
   const handleLoadMore = () => {
     setVisibleRecipes(recipes);
@@ -22,8 +25,8 @@ const LatestRecipes = () => {
 
   return (
     <div className="my-8 container">
-      <Typo fontFamily="Playfair Display" className="text-4xl font-bold my-8">
-        Latest Recipes
+      <Typo fontFamily="Playfair Display" className={`${titleSize ? titleSize : 'text-4xl'} font-bold my-8`}>
+        {title}
       </Typo>
       <div className="flex flex-wrap">
         {visibleRecipes?.map((recipe) => (

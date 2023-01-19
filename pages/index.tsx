@@ -10,7 +10,7 @@ const HomePage = () => {
     <div>
       <RecipeCarousel />
       <PopularCategories />
-      <LatestRecipes />
+      <LatestRecipes title="Latest Recipes" numOfItems={24}/>
       <Newsletter />
     </div>
   );
