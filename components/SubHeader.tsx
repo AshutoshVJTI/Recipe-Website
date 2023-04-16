@@ -1,14 +1,33 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 import { BsSearch, BsXLg } from "react-icons/bs";
-import { useUser } from "@auth0/nextjs-auth0/client";
 import Link from "next/link";
+import LoginModal from "./LoginModal";
+import SignupModal from "./SignupModal";
+import { auth } from "../lib/firebase";
+import { signOut } from "firebase/auth";
+import { useAvatar } from "@/lib/contentful";
 
 const SubHeader = () => {
+  const { avatar } = useAvatar();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showSignupModal, setShowSignupModal] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
-  const { user, error, isLoading } = useUser();
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        setIsLoggedIn(true);
+        setShowDropdown(false);
+      } else {
+        setIsLoggedIn(false);
+        setShowDropdown(false);
+      }
+    });
+  }, []);
 
   const handleSearchOpen = () => {
     setIsSearchOpen(true);
@@ -16,6 +35,13 @@ const SubHeader = () => {
 
   const handleSearchClose = () => {
     setIsSearchOpen(false);
+  };
+
+  const handleLogout = async () => {
+    await signOut(auth).then(() => {
+      setShowLoginModal(false);
+      setShowSignupModal(false);
+    });
   };
 
   return (
@@ -58,37 +84,67 @@ const SubHeader = () => {
           >
             <BsSearch />
           </button>
-          {!user && (
-            <Link
-              href="/api/auth/login"
-              className="text-black hover:text-orange-600 mx-4"
-            >
-              Login
-            </Link>
-          )}
-          {user && user.picture && user.name && (
+
+          {isLoggedIn ? (
             <div className="user-avatar relative z-10">
               <img
-                src={user.picture}
-                alt={user.name}
+                src={auth.currentUser?.photoURL || avatar}
+                alt={auth.currentUser?.displayName || "Default avatar"}
                 className="rounded-full cursor-pointer w-8 ml-4"
                 onClick={() => setShowDropdown(!showDropdown)}
               />
               <div
-                className={`dropdown-menu absolute bg-white shadow ${
+                className={`dropdown-menu absolute bg-white shadow  ${
                   showDropdown ? "block" : "hidden"
                 }`}
               >
                 <ul className="p-2">
                   <li>
-                    <Link href="/profile" className="py-2 hover:text-orange-500">Profile</Link>
+                    <Link
+                      href="/profile"
+                      className="py-2 hover:text-orange-500"
+                    >
+                      Profile
+                    </Link>
                   </li>
                   <li>
-                    <Link href="/api/auth/logout" className="py-2 hover:text-orange-500">Logout</Link>
+                    <button
+                      onClick={handleLogout}
+                      className="py-2 hover:text-orange-500"
+                    >
+                      Logout
+                    </button>
                   </li>
                 </ul>
               </div>
             </div>
+          ) : (
+            <>
+              <button
+                onClick={() => setShowLoginModal(true)}
+                className="text-black hover:text-orange-600 mx-4"
+              >
+                Login
+              </button>
+              <button
+                onClick={() => setShowSignupModal(true)}
+                className="text-black hover:text-orange-600 mx-4"
+              >
+                Signup
+              </button>
+              {showLoginModal && (
+                <LoginModal
+                  setShowModal={setShowLoginModal}
+                  showModal={showLoginModal}
+                />
+              )}
+              {showSignupModal && (
+                <SignupModal
+                  setShowModal={setShowSignupModal}
+                  showModal={showSignupModal}
+                />
+              )}
+            </>
           )}
         </div>
       </div>
