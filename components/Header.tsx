@@ -4,6 +4,7 @@ import Link from "next/link";
 import SubHeader from "./SubHeader";
 import { useLogo } from "../lib/contentful";
 import { useRouter } from "next/router";
+import { NavigationLinks } from "@/utils/navLinks";
 
 const Header = () => {
   const { logo } = useLogo();
@@ -17,51 +18,19 @@ const Header = () => {
           <img src={logo} alt="Logo" className="w-44 m-6" />
         </Link>
         <nav className="flex flex-row items-center justify-center">
-        <Link href="/">
-            <div
-              className={`mx-4 text-black hover:text-orange-600 cursor-pointer ${
-                router.asPath === "/" ? "font-bold" : "font-medium"
-              }`}
-            >
-              Home
-            </div>
-          </Link>
-          <Link href="/categories">
-            <div
-              className={`mx-4 text-black hover:text-orange-600 cursor-pointer ${
-                router.asPath === "/categories" ? "font-bold" : "font-medium"
-              }`}
-            >
-              Categories
-            </div>
-          </Link>
-          <Link href="/favorites">
-            <div
-              className={`mx-4 text-black hover:text-orange-600 cursor-pointer ${
-                router.asPath === "/favorites" ? "font-bold" : "font-medium"
-              }`}
-            >
-              Favorites
-            </div>
-          </Link>
-          <Link href="/profile">
-            <div
-              className={`mx-4 text-black hover:text-orange-600 cursor-pointer ${
-                router.asPath === "/profile" ? "font-bold" : "font-medium"
-              }`}
-            >
-              Profile
-            </div>
-          </Link>
-          <Link href="/about">
-            <div
-              className={`mx-4 text-black hover:text-orange-600 cursor-pointer ${
-                router.asPath === "/about" ? "font-bold" : "font-medium"
-              }`}
-            >
-              About
-            </div>
-          </Link>
+          {NavigationLinks.map((link) => {
+            return (
+              <Link key={link.id} href={link.href}>
+                <div
+                  className={`mx-4 text-black hover:text-orange-600 cursor-pointer ${
+                    router.asPath === link.href ? "font-bold" : "font-medium"
+                  }`}
+                >
+                  {link.label}
+                </div>
+              </Link>
+            );
+          })}
         </nav>
       </header>
     </div>

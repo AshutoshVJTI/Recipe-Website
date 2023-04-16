@@ -4,7 +4,6 @@ import Image from "next/image";
 
 const Careers = () => {
   const { careers } = useCareers();
-  console.log(careers);
 
   return (
     <div className="container mx-auto py-16">

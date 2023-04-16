@@ -14,7 +14,7 @@ const CategoryDetail = () => {
 
   useEffect(() => {
     if (categories) {
-      const currentCategory = categories.find((r) => r?.sys?.id === id);
+      const currentCategory = categories.find((c) => c?.sys?.id === id);
       setCategory(currentCategory);
     }
   }, [categories, id]);

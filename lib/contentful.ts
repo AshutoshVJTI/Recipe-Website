@@ -15,7 +15,7 @@ export const useRecipes = () => {
       .getEntries({
         content_type: "recipe",
       })
-      .then((response: any) => {
+      .then((response) => {
         setRecipes(response.items);
         setLoadingRecipes(false);
       });
@@ -33,7 +33,7 @@ export const useCategories = () => {
       .getEntries({
         content_type: "category",
       })
-      .then((response: any) => {
+      .then((response) => {
         setCategories(response.items);
         setLoadingCategories(false);
       });
@@ -51,7 +51,7 @@ export const useCareers = () => {
       .getEntries({
         content_type: "career",
       })
-      .then((response: any) => {
+      .then((response) => {
         setCareers(response.items);
         setLoadingCareers(false);
       });
@@ -70,4 +70,16 @@ export const useLogo = () => {
   }, []);
 
   return { logo };
+};
+
+export const useAvatar = () => {
+  const [avatar, setAvatar] = useState<string>();
+
+  useEffect(() => {
+    client.getAsset("uj0aKbXcj4RbeftOfu9y3").then((asset) => {
+      setAvatar(asset.fields.file.url);
+    });
+  }, []);
+
+  return { avatar };
 };

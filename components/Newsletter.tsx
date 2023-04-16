@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Typo from "./Typo";
@@ -10,7 +11,6 @@ const Newsletter = () => {
   } = useForm();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const onSubmit = (data: any) => {
-    console.log(data);
     setIsSubmitted(true);
   };
   return (
@@ -52,9 +52,9 @@ const Newsletter = () => {
           )}
           <p className="text-gray-600 my-3 text-sm">
             By joining our newsletter you agree to our{" "}
-            <a href="#" className="text-orange-500">
+            <Link href="/terms" className="text-orange-500">
               Terms and Conditions
-            </a>
+            </Link>
           </p>
         </div>
       </div>

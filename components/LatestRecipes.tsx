@@ -5,8 +5,13 @@ import { useRecipes } from "../lib/contentful";
 import Typo from "./Typo";
 import { useState, useEffect } from "react";
 
+interface LatestRecipesProps {
+  title: string;
+  numberOfItems: number;
+  titleSize?: string;
+}
 
-const LatestRecipes = (props: any) => {
+const LatestRecipes = (props: LatestRecipesProps) => {
   const {title, numberOfItems, titleSize} = props;
   const { recipes } = useRecipes();
   const [visibleRecipes, setVisibleRecipes] = useState<any[]>();

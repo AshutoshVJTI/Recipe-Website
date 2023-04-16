@@ -153,7 +153,7 @@ const RecipeDetail = () => {
       </div>
       <hr className="my-4 border-4 border-orange-500" />
       <div>
-        <LatestRecipes title={"You might also like"} numOfItems={4} titleSize={"text-3xl"}/>
+        <LatestRecipes title={"You might also like"} numberOfItems={4} titleSize={"text-3xl"}/>
       </div>
     </div>
   );

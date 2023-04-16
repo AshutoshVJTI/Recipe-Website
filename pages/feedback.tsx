@@ -8,9 +8,6 @@ const Feedback = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    console.log("Name: ", name);
-    console.log("Email: ", email);
-    console.log("Feedback: ", feedback);
   };
 
   return (

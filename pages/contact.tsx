@@ -1,16 +1,28 @@
 import { useForm } from "react-hook-form";
-import Typo from '@/components/Typo';
+import Typo from "@/components/Typo";
+import { useState } from "react";
 
 const Contact = () => {
+  const [details, setDetails] = useState<any>({
+    name: "",
+    email: "",
+    message: "",
+  });
   const { register, handleSubmit } = useForm();
   const onSubmit = (data: any) => {
-    console.log(data);
-    // send data to server
+
+  };
+  const handleChange = (e: any, type: string) => {
   };
 
   return (
     <div className="container mx-auto my-10">
-      <Typo fontFamily="Playfair Details" className="text-6xl font-bold text-center mb-4">Contact Us</Typo>
+      <Typo
+        fontFamily="Playfair Details"
+        className="text-6xl font-bold text-center mb-4"
+      >
+        Contact Us
+      </Typo>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
           <label htmlFor="name" className="block text-base font-medium mb-2">
@@ -23,6 +35,7 @@ const Contact = () => {
             placeholder="Enter your name"
             // ref={register({ required: true })}
             className={`border border-gray-400 p-2 w-full `}
+            onChange={(e: any) => handleChange(e, "name")}
           />
         </div>
         <div className="mb-4">

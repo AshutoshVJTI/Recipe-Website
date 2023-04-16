@@ -2,7 +2,11 @@ import React from "react";
 import Header from "./Header";
 import Footer from "@/components/Footer";
 
-const Layout = (props: any) => {
+interface LayoutProps {
+  children: React.ReactNode;
+}
+
+const Layout = (props: LayoutProps) => {
   const { children } = props;
   return (
     <div>
