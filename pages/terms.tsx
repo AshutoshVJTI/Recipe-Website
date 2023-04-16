@@ -5,12 +5,14 @@ const Terms = () => {
     <div className="container mx-auto">
       <h1 className="text-2xl font-medium">Terms and Conditions</h1>
       <p>
-        These terms and conditions ("Terms", "Agreement") are an agreement
-        between the operator of My Recipe Website ("Website operator", "us",
-        "we" or "our") and you ("User", "you" or "your"). This Agreement sets
-        forth the general terms and conditions of your use of the myrecipe.com
-        website and any of its products or services (collectively, "Website" or
-        "Services").
+        These terms and conditions (&quot;Terms&quot;, &quot;Agreement&quot;)
+        are an agreement between the operator of My Recipe Website
+        (&quot;Website operator&quot;, &quot;us&quot;, &quot;we&quot; or
+        &quot;our&quot;) and you (&quot;User&quot;, &quot;you&quot; or
+        &quot;your&quot;). This Agreement sets forth the general terms and
+        conditions of your use of the myrecipe.com website and any of its
+        products or services (collectively, &quot;Website&quot; or
+        &quot;Services&quot;).
       </p>
       <p>
         By accessing or using the Website, you agree to be bound by these Terms.
@@ -38,8 +40,8 @@ const Terms = () => {
       <p>
         Our Website allows you to post, link, store, share and otherwise make
         available certain information, text, graphics, videos, or other material
-        ("Content"). You are responsible for the Content that you post on or
-        through the Website, including its legality, reliability, and
+        (&quot;Content&quot;). You are responsible for the Content that you post
+        on or through the Website, including its legality, reliability, and
         appropriateness.
       </p>
       <p>
